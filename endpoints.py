@@ -2,6 +2,8 @@ import logging
 
 from flask import Blueprint, jsonify, request
 
+from model_loader import predict
+
 api = Blueprint("api", __name__)
 log = logging.getLogger(__name__)
 
@@ -23,12 +25,15 @@ def get_prediction():
 
     if len(points) > MAX_POINTS:
         return jsonify({"error": f"too many points (max {MAX_POINTS})"}), 413
-    
-    # TODO: Call model to receive prediction
-    # prediction = model.predict(points)
 
-    log.info("getPrediction: received %d points", len(points))
-    return jsonify({"message": f"Received {len(points)} points"}), 200
+    try:
+        prediction = predict(points)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+    log.info("getPrediction: %d points -> %s (%.3f)",
+             len(points), prediction["label"], prediction["confidence"])
+    return jsonify(prediction), 200
 
 
 @api.errorhandler(404)

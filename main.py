@@ -6,12 +6,14 @@ from flask_cors import CORS
 from waitress import serve
 
 from endpoints import api
+from model_loader import load_model
 
 
 def create_app() -> Flask:
     app = Flask(__name__)
     CORS(app)
     app.register_blueprint(api)
+    load_model()
     return app
 
 
