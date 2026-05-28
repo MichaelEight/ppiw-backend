@@ -6,6 +6,7 @@ from flask_cors import CORS
 from waitress import serve
 
 from endpoints import api
+from leaderboard import init_db
 from model_loader import load_model
 
 
@@ -14,6 +15,7 @@ def create_app() -> Flask:
     CORS(app)
     app.register_blueprint(api)
     load_model()
+    init_db()
     return app
 
 

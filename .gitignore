@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Virtualenv
+venv/
+.venv/
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Env / secrets
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Model weights — stored separately, keep model/ folder + metadata/readme
+model/*.pth
+model/*.pt
+model/*.onnx
+model/*.joblib
