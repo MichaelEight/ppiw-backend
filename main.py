@@ -5,8 +5,8 @@ from flask import Flask
 from flask_cors import CORS
 from waitress import serve
 
+from db import init_db
 from endpoints import api
-from leaderboard import init_db
 from model_loader import load_model
 
 
