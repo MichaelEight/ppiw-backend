@@ -27,3 +27,6 @@ model/*.pth
 model/*.pt
 model/*.onnx
 model/*.joblib
+
+model/preprocessing_metadata.json
+model/README_BACKEND.md
